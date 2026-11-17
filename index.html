@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>おぼえててくん</title>
+<style>
+  body{font-family:-apple-system,sans-serif;text-align:center;padding:48px 24px;color:#222}
+  a.btn{display:inline-block;margin-top:24px;padding:16px 28px;border-radius:14px;background:#0a84ff;color:#fff;font-size:18px;text-decoration:none}
+  p{color:#666;line-height:1.6}
+</style>
+</head>
+<body>
+<h2>おぼえててくん</h2>
+<p id="msg">アプリを開いています…開かないときは、下のボタンを押してください</p>
+<a id="open" class="btn" href="#">おぼえててくんで開く</a>
+<p style="font-size:13px;margin-top:40px">アプリが開かないときは、おぼえててくんが入っているか確認してください</p>
+<script>
+  var h = location.hash;
+  if (h.indexOf("#d=") === 0) {
+    var url = "yorimichi://import?d=" + h.slice(3);
+    document.getElementById("open").href = url;
+    // 開いたらすぐアプリを開く（開かない時は下のボタンを押す）
+    setTimeout(function(){ location.href = url; }, 300);
+  } else {
+    document.getElementById("msg").textContent = "リンクが正しくありません。送った人に、もう一度送ってもらってください";
+    document.getElementById("open").style.display = "none";
+  }
+</script>
+</body>
+</html>
